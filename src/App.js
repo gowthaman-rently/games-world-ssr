@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SigninPage from './pages/signinPage';
 import AppPage from './pages/appPage';
 import HomePage from './pages/homePage';
 import GamePage from './pages/gamePage';

@@ -4,11 +4,6 @@ import {
   Container,
   Toolbar,
   Typography,
-  MenuItem,
-  Menu,
-  Avatar,
-  IconButton,
-  Tooltip,
   Box,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
