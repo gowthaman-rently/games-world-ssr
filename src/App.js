@@ -1,33 +1,23 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AppPage from './pages/appPage';
-import HomePage from './pages/homePage';
-import GamePage from './pages/gamePage';
-import ExplorePage from './pages/explorePage';
 import ErrorBoundary from './pages/errorPage';
-
+import MainRouter from './router/mainRouter';
+import NavBar from './components/navbar';
+import { Box } from '@mui/material';
 
 class App extends React.Component {
-
-  render() { 
+  render() {
     return (
       <div className="App">
         <ErrorBoundary>
-          <BrowserRouter>
-              <Routes>
-                  <Route path='/' element={<AppPage />}>
-                      <Route index element={<HomePage/>}/>
-                      <Route path="/explore" element={<ExplorePage/>}/>
-                      <Route path="/:gameid" element={<GamePage/>}/>
-                  </Route>
-              </Routes>
-          </BrowserRouter>
+          <NavBar />
+          <Box mt={8}>
+            <MainRouter />
+          </Box>
         </ErrorBoundary>
       </div>
     );
-
   }
 }
- 
+
 export default App;

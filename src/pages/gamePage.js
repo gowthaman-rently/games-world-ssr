@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Button, CircularProgress, Divider, Grid, Typography, capitalize, styled, Modal, IconButton } from '@mui/material';
-import connect from './connector';
+import connect from '../library/connector';
 import CloseIcon from '@mui/icons-material/Close';
 import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormControl, InputLabel, Select, MenuItem, Grid, Box, OutlinedInput, Checkbox, ListItemText, CircularProgress, Typography, Pagination} from '@mui/material'
-import RapidAPIConnect from './connector';
-import GameCard from './components/gameCard';
+import RapidAPIConnect from '../library/connector';
+import GameCard from '../components/gameCard';
 
 const categories = ["mmorpg","shooter","strategy","moba","racing","sports","social","sandbox","open-world","survival","pvp","pve","pixel","voxel","zombie","turn-based","first-person","third-Person","top-down","tank","space","sailing","side-scroller","superhero","permadeath","card","battle-royale","mmo","mmofps","mmotps","3d","2d","anime","fantasy","sci-fi","fighting","action-rpg","action","military","martial-arts","flight","low-spec","tower-defense","horror","mmorts"];
 
