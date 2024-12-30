@@ -17,14 +17,14 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 function HomePage() {
   const [count, setCount] = useState(8);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { games } = useSelector((state) => ({
     games: state.gamesList,
   }));
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getGamesList());
-  }, [])
+  }, []);
 
   return (
     <div>
