@@ -8,7 +8,7 @@ const configureStore = (preloadedState = {}) => {
     gamesList,
   });
 
-  const middleware = [thunk];
+  const middleware = (typeof thunk === 'function')? [thunk] : [thunk.default];
 
   const composeEnhancers =
     typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -16,7 +16,7 @@ const configureStore = (preloadedState = {}) => {
       : compose;
 
   const enhancer = composeEnhancers(applyMiddleware(...middleware));
-  return createStore(reducer, applyMiddleware(...middleware));
+  return createStore(reducer, enhancer);
 };
 
 export default configureStore;

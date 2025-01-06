@@ -2,6 +2,7 @@ import RapidAPIconnect from '../library/connector';
 
 const getGamesList = (params) => {
   return (dispatch) => {
+    console.log('GET GAMES LIST');
     return RapidAPIconnect(
       'GET',
       'https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=popularity'

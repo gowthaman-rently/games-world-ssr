@@ -25,7 +25,14 @@ async function createServer() {
   // middlewares). The following is valid even after restarts.
   app.use(vite.middlewares);
 
-  app.use('*', async (req, res, next) => {
+  app.use((req, res, next) => {
+    const now = new Date();
+    const timestamp = `${now.toISOString()}`;
+    console.log(`\n[${timestamp}] ${req.method} ${req.url}\n`);
+    next();
+  });
+
+  app.get('*', async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
@@ -43,18 +50,19 @@ async function createServer() {
       // 3. Load the server entry. ssrLoadModule automatically transforms
       //    ESM source code to be usable in Node.js! There is no bundling
       //    required, and provides efficient invalidation similar to HMR.
-      const { render } = await vite.ssrLoadModule('/src/entry-server.js');
+      const { render } = await vite.ssrLoadModule('src/entry-server.js');
 
       // 4. render the app HTML. This assumes entry-server.js's exported
       //     `render` function calls appropriate framework SSR APIs,
       //    e.g. ReactDOMServer.renderToString()
       const appHtml = await render(url);
+      // 5. Inject the app-rend ered HTML into the template.
+      const html = template.replace(`<!--ssr-outlet-->`, appHtml.html);
+      const htmlWithRedux = html.replace(`<!--ssr-redux-initial state-->`,`<script>window.__PRELOADED_STATE__=${JSON.stringify(appHtml.initialState)}</script>`);
 
-      // 5. Inject the app-rendered HTML into the template.
-      const html = template.replace(`<!--ssr-outlet-->`, () => appHtml);
 
       // 6. Send the rendered HTML back.
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+      res.status(200).set({ 'Content-Type': 'text/html' }).end(htmlWithRedux);
     } catch (e) {
       // If an error is caught, let Vite fix the stack trace so it maps back
       // to your actual source code.
