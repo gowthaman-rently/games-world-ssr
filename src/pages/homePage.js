@@ -5,6 +5,7 @@ import GameCard from '../components/gameCard';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGamesList } from '../redux/action';
+import { useSSR } from '../useSSR/SSRContext';
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: 'white',
@@ -19,9 +20,11 @@ function HomePage() {
   const [count, setCount] = useState(8);
   const dispatch = useDispatch();
 
-  // useLayoutEffect(async () => {
-  //   await dispatch(getGamesList());
-  // }, []);
+  const registerSSR = useSSR();
+
+  registerSSR(() => {
+    return dispatch(getGamesList());
+  });
 
   const { games } = useSelector((state) => ({
     games: state.gamesList,

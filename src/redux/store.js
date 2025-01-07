@@ -1,11 +1,12 @@
 import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
-import { gamesList } from './reducer';
+import { game, gamesList } from './reducer';
 
 import thunk from 'redux-thunk';
 
 const configureStore = (preloadedState = {}) => {
   const reducer = combineReducers({
     gamesList,
+    game
   });
 
   const middleware = (typeof thunk === 'function')? [thunk] : [thunk.default];
