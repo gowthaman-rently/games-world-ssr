@@ -1,17 +1,14 @@
-import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs/promises';
-import commonjs from 'vite-plugin-commonjs';
+import vike from 'vike/plugin';
 
 export default defineConfig({
-  base: './',
-  plugins: [react()],
+  base: '/',
+  plugins: [react(), vike()],
   esbuild: {
     loader: 'jsx',
     include: /src\/.*\.jsx?$/,
-    // loader: "tsx",
-    // include: /src\/.*\.[tj]sx?$/,
     exclude: [],
   },
   optimizeDeps: {

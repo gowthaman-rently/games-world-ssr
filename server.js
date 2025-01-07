@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
+import { renderPage } from 'vike/server'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -41,6 +42,17 @@ async function createServer() {
         path.resolve(__dirname, 'index.html'),
         'utf-8'
       );
+
+      const pageContextInit = {
+        urlOriginal: req.originalUrl,
+        headersOriginal: req.headers
+      }
+      const pageContext = await renderPage(pageContextInit)
+      if (pageContext.errorWhileRendering) {
+        // Install error tracking here, see https://vike.dev/error-tracking
+      }
+      const { httpResponse } = pageContext
+
 
       // 2. Apply Vite HTML transforms. This injects the Vite HMR client,
       //    and also applies HTML transforms from Vite plugins, e.g. global

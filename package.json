@@ -20,10 +20,12 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
+    "vike": "^0.4.212",
+    "vike-react": "^0.5.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "node server",
+    "dev": "vite dev",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --outDir dist/server --ssr src/entry-server.js"
   },
