@@ -132,7 +132,7 @@ class GamePage extends React.Component {
         </SSRContext.Consumer>
         <div style={{ paddingTop: 3 }}>
           {this.props.game !== null ? (
-            this.props.game !== undefined ? (
+            this.props.game !== 0 ? (
               <>
                 <Grid
                   container
