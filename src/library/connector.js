@@ -6,7 +6,7 @@ const RapidAPIconnect = async (method, url, params = {})=>{
         url: url,
         params: params,
         headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+          'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
           'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
         }
     };

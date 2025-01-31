@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import GameCard from '../components/gameCard';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGamesList } from '../redux/action';
+import { useSSR } from '../useSSR/SSRContext';
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: 'white',
@@ -17,7 +18,14 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 function HomePage() {
   const [count, setCount] = useState(8);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const registerSSR = useSSR();
+
+  registerSSR(() => {
+    return dispatch(getGamesList());
+  });
+
   const { games } = useSelector((state) => ({
     games: state.gamesList,
   }));

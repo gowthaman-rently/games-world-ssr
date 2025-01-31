@@ -11,4 +11,16 @@ const getGamesList = (params) => {
   };
 };
 
-export { getGamesList }
+const getGame = (id) => {
+  return (dispatch) => {
+    return RapidAPIconnect(
+      'GET',
+      'https://free-to-play-games-database.p.rapidapi.com/api/game',
+      { id }
+    ).then((resp) => {
+      dispatch({ type: 'SET_GAME', payload: resp.data || 0});
+    });
+  };
+};
+
+export { getGamesList, getGame }
