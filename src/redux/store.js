@@ -17,7 +17,7 @@ const configureStore = (preloadedState = {}) => {
       : compose;
 
   const enhancer = composeEnhancers(applyMiddleware(...middleware));
-  return createStore(reducer, enhancer);
+  return createStore(reducer,preloadedState, enhancer);
 };
 
 export default configureStore;

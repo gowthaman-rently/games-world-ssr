@@ -117,8 +117,6 @@ class GamePage extends React.Component {
   }
 
   render() {
-    console.log(this.props.game);
-
     const history = this.props.history;
     const gameID = history.location.pathname.split('/')[1];
     return (
